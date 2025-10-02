@@ -72,11 +72,12 @@ ol {
 }
 
 .result__video {
-  object-fit: contain;
+  object-fit: cover;
+  width: 711px;
+  height: 386px;
 }
 
 .result__video-container {
-  width: 711px;
   height: 386px;
   margin-bottom: 16px;
 }
@@ -99,7 +100,16 @@ ol {
   align-items: flex-start;
 }
 
+.content__list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .content__list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
   height: 298px;
   overflow-y: scroll;
 }
