@@ -99,7 +99,7 @@ ol {
 .content__video-card-thumbnail {
   min-width: 194px;
   height: 103px;
-  object-fit: contain;
+  object-fit: fill;
   object-position: top; /* тут сомнения */
 }
 
@@ -111,12 +111,14 @@ ol {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  height: 54px;
 }
 
 .content__list {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  width: 390px;
 }
 
 .content__list-container {
@@ -128,7 +130,6 @@ ol {
 }
 
 .title {
-  margin-bottom: 26px;
   font-family: Oswald; /*дописать еще*/
   font-weight: 700;
   font-size: 75px;
@@ -152,11 +153,14 @@ ol {
 }
 
 .content__video-card-title {
-  /*возможность переполнения, заменяя излишний текст*/
+  width: 196px;
   font-family: Oswald;
   font-weight: 700;
   font-size: 30px;
   text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .content__video-card-description {
@@ -164,8 +168,10 @@ ol {
   font-weight: 400;
   font-size: 18px;
   line-height: 16.2px;
-
-  /* возможность переполнения, заменяя излишний текст, line-clamp, Обращайте особое внимание на интерлиньяж.*/
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  /* использовать line-clamp */
 }
 
 .visually-hidden {
@@ -180,7 +186,6 @@ ol {
 
 .search-form__fieldset {
   border: none;
-  height: 49px;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -196,8 +201,20 @@ ol {
   align-items: center;
   width: fit-content;
   gap: 5px;
-  height: 22px;
 }
+
+/*.search-form__fieldset:focus input {
+  outline: none;
+}
+
+.search-form__label:has(:focus-visible) {
+  outline: 1px solid red;  
+  } 
+  
+  input:active {
+  outline: none;
+} 
+  */
 
 .search-form__fieldset input {
   /*Факультативный шаг. 
@@ -244,6 +261,78 @@ ol {
   opacity: 1;
 }
 
-.search-form__fieldset:hover .search-form__checkbox-list {
+.search-form__label:hover .search-form__label-text {
   text-decoration: underline;
+  cursor: pointer;
+}
+
+/*Факультативный шаг focus */
+
+.button {
+  min-height: 34px;
+  background-color: transparent;
+  border: 1px solid white;
+  font-family: "Fira Sans Condensed";
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.search-form__submit-button {
+  width: 194px;
+  align-self: flex-end;
+}
+
+.more-button {
+  width: 100%;
+}
+
+.button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.button:active {
+  background-color: #545050;
+}
+
+/*.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 1px solid red; 
+} */
+
+.content__card-link {
+  display: block;
+}
+
+.content__card-link:active {
+  background-color: #545050;
+}
+
+.content__card-link:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.content__card-link_current {
+  background-color: #545050;
+}
+
+/*
+Чтобы состояние :focus-visible работало корректно, 
+придётся сбросить стандартную обводку в состоянии :focus. 
+При событии :focus-visible добавьте обводку с помощью outline.
+Задайте padding слева и справа для .content__list-item в 3px,
+ так обводка не прилипнет к границе карточки, если вы будете её реализовывать.*/
+
+.result__video-container {
+  position: relative;
+}
+
+.content__list-container {
+  position: relative;
 }
